@@ -1,22 +1,24 @@
 import './App.css'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import VideoLanding from './components/VideoLanding'
 import VideoTable from './components/VideoTable'
+import Layout from './components/Layout';
 
 
 function App() {
   return (
     <>
-      <div className="flex flex-row">
-        <nav className="basis-4/12">
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Video Gallery</a></li>
-                <li><a href="#">Contacto</a></li>
-            </ul>
-        </nav>
-        <div className='basis-8/12'>
-         <VideoTable />
-        </div>
-    </div>
+     <div className="flex flex-row">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<VideoLanding />} />
+            <Route path="video-gallery" element={<VideoTable />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+      </div>
     </>
   )
 }
